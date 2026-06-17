@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gusmão | Data Analyst & Pricing Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #1D9E75;
+    --teal-light: #E1F5EE;
+    --teal-mid: #5DCAA5;
+    --teal-dark: #085041;
+    --ink: #1a1a18;
+    --ink-soft: #444441;
+    --ink-muted: #888780;
+    --surface: #f8f8f6;
+    --white: #ffffff;
+    --border: rgba(0,0,0,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(248,248,246,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; }
+  .nav-logo span { color: var(--teal); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 14px; color: var(--ink-muted); text-decoration: none; transition: color .2s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta { background: var(--teal); color: white; font-size: 13px; font-weight: 500; padding: 8px 18px; border-radius: 8px; text-decoration: none; transition: opacity .2s; }
+  .nav-cta:hover { opacity: .85; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 6rem 2rem 4rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .hero-inner { max-width: 680px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--teal-light); color: var(--teal-dark);
+    font-size: 13px; font-weight: 500;
+    padding: 6px 14px; border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--teal); border-radius: 50%; }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+  h1 .accent { color: var(--teal); }
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 520px;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--teal); color: white;
+    font-size: 15px; font-weight: 500;
+    padding: 13px 28px; border-radius: 10px;
+    text-decoration: none; transition: opacity .2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { opacity: .85; }
+  .btn-secondary {
+    background: white; color: var(--ink);
+    font-size: 15px; font-weight: 500;
+    padding: 12px 28px; border-radius: 10px;
+    text-decoration: none; border: 1.5px solid var(--border);
+    transition: border-color .2s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { border-color: #aaa; }
+  .hero-stats {
+    display: flex; gap: 2.5rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-val { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--ink); }
+  .stat-label { font-size: 13px; color: var(--ink-muted); margin-top: 2px; }
+
+  /* SECTIONS COMMON */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 12px; font-weight: 600; color: var(--teal); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+  h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .section-desc { font-size: 15px; color: var(--ink-muted); margin-bottom: 3rem; }
+
+  /* SERVICES */
+  .services-bg { background: white; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+  .service-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.5rem;
+    transition: border-color .2s, transform .2s;
+  }
+  .service-card:hover { border-color: var(--teal-mid); transform: translateY(-2px); }
+  .service-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--teal-light);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem; font-size: 22px;
+  }
+  .service-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .service-card p { font-size: 13px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 1rem; }
+  .service-price { font-size: 14px; font-weight: 600; color: var(--teal); }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
+  .project-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    transition: box-shadow .2s;
+  }
+  .project-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+  .project-thumb {
+    height: 140px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; position: relative; overflow: hidden;
+  }
+  .project-thumb.t1 { background: linear-gradient(135deg, #E1F5EE 0%, #9FE1CB 100%); }
+  .project-thumb.t2 { background: linear-gradient(135deg, #E6F1FB 0%, #B5D4F4 100%); }
+  .project-thumb.t3 { background: linear-gradient(135deg, #EEEDFE 0%, #CECBF6 100%); }
+  .project-body { padding: 1.25rem; }
+  .project-tag { font-size: 11px; font-weight: 600; color: var(--teal); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .project-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .project-card p { font-size: 13px; color: var(--ink-muted); margin-bottom: 1rem; }
+  .project-links { display: flex; gap: 10px; }
+  .project-link { font-size: 12px; font-weight: 500; color: var(--teal); text-decoration: none; padding: 5px 12px; border: 1px solid var(--teal-mid); border-radius: 6px; transition: background .15s; }
+  .project-link:hover { background: var(--teal-light); }
+
+  /* SKILLS */
+  .skills-bg { background: white; }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .skill-group h4 { font-size: 13px; font-weight: 600; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag { font-size: 13px; background: var(--surface); border: 1px solid var(--border); color: var(--ink-soft); padding: 5px 12px; border-radius: 20px; }
+
+  /* ABOUT */
+  .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-avatar {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: var(--teal-light); border: 3px solid var(--teal-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800;
+    color: var(--teal-dark); margin-bottom: 1.5rem;
+  }
+  .about-text h2 { margin-bottom: 1rem; }
+  .about-text p { font-size: 15px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 1rem; }
+  .about-highlights { list-style: none; }
+  .about-highlights li { font-size: 14px; color: var(--ink-soft); padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+  .about-highlights li:last-child { border-bottom: none; }
+  .about-highlights li::before { content: '→'; color: var(--teal); font-weight: 600; }
+
+  /* CONTACT */
+  .contact-bg { background: var(--ink); color: white; }
+  .contact-bg h2 { color: white; }
+  .contact-bg .section-label { color: var(--teal-mid); }
+  .contact-bg .section-desc { color: rgba(255,255,255,0.5); }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-channels { display: flex; flex-direction: column; gap: 12px; }
+  .contact-channel {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px; padding: 14px 18px;
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none; color: white; transition: background .2s;
+  }
+  .contact-channel:hover { background: rgba(255,255,255,0.1); }
+  .channel-icon { font-size: 20px; }
+  .channel-label { font-size: 12px; color: rgba(255,255,255,0.4); }
+  .channel-val { font-size: 14px; font-weight: 500; }
+  .contact-form-note { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 1rem; }
+  .contact-whatsapp {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--teal); color: white; font-size: 15px; font-weight: 500;
+    padding: 13px 24px; border-radius: 10px; text-decoration: none;
+    margin-top: 1rem; transition: opacity .2s;
+  }
+  .contact-whatsapp:hover { opacity: .85; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-copy { font-size: 13px; color: rgba(255,255,255,0.3); }
+  .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; color: rgba(255,255,255,0.5); }
+
+  @media (max-width: 700px) {
+    .hero-stats { flex-direction: column; gap: 1.5rem; }
+    .about-inner, .contact-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Gusmão<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+  </ul>
+  <a href="#contato" class="nav-cta">Contratar</a>
+</nav>
+
+<!-- HERO -->
+<section style="padding-top: 0;">
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Disponível para novos projetos</div>
+      <h1>Dados que<br>geram decisões<br><span class="accent">mais lucrativas.</span></h1>
+      <p class="hero-desc">Analista de dados e especialista em precificação. Transformo planilhas bagunçadas em dashboards claros, análises de margem e automações que economizam horas do seu time.</p>
+      <div class="hero-actions">
+        <a href="#servicos" class="btn-primary">Ver serviços</a>
+        <a href="#projetos" class="btn-secondary">Ver portfólio →</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-val">R$ 0</div>
+          <div class="stat-label">Investimento seu para contratar</div>
+        </div>
+        <div>
+          <div class="stat-val">48h</div>
+          <div class="stat-label">Tempo médio de entrega</div>
+        </div>
+        <div>
+          <div class="stat-val">100%</div>
+          <div class="stat-label">Retrabalho se não gostar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos" class="services-bg">
+  <div class="container">
+    <p class="section-label">O que eu faço</p>
+    <h2>Serviços</h2>
+    <p class="section-desc">Projetos pontuais ou pacotes mensais. Faturamento por Pix ou transferência.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Dashboard & Relatórios</h3>
+        <p>Dashboards no Excel ou Google Sheets com gráficos dinâmicos, KPIs automáticos e visual profissional.</p>
+        <div class="service-price">A partir de R$ 150</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💰</div>
+        <h3>Análise de Precificação</h3>
+        <p>Modelo de precificação com margem de contribuição, análise de concorrência e recomendação de preço.</p>
+        <div class="service-price">A partir de R$ 300</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <h3>Automação de Planilhas</h3>
+        <p>VBA ou Python para eliminar tarefas repetitivas: consolidação de dados, relatórios automáticos, alertas.</p>
+        <div class="service-price">A partir de R$ 400</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔄</div>
+        <h3>Monitoramento Mensal</h3>
+        <p>Pacote recorrente: atualização de dados, análises mensais e suporte contínuo para decisões.</p>
+        <div class="service-price">A partir de R$ 600/mês</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="container">
+    <p class="section-label">Portfólio</p>
+    <h2>Projetos recentes</h2>
+    <p class="section-desc">Todos os projetos estão documentados no GitHub com dados, código e análise completa.</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-thumb t1">📈</div>
+        <div class="project-body">
+          <div class="project-tag">Precificação · E-commerce</div>
+          <h3>Monitor de Buy Box — Mercado Livre</h3>
+          <p>Ferramenta que monitora preços de concorrentes em tempo real e gera alertas no Telegram quando perde o Buy Box.</p>
+          <div class="project-links">
+            <a href="https://github.com/" class="project-link">Ver no GitHub →</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb t2">📊</div>
+        <div class="project-body">
+          <div class="project-tag">Dashboard · Análise de dados</div>
+          <h3>Dashboard de Margem por SKU</h3>
+          <p>Painel Excel com análise de margem de contribuição, curva ABC e identificação de produtos deficitários.</p>
+          <div class="project-links">
+            <a href="https://github.com/" class="project-link">Ver no GitHub →</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb t3">🤖</div>
+        <div class="project-body">
+          <div class="project-tag">Automação · Python</div>
+          <h3>ML Price Hunter</h3>
+          <p>Extensão Chrome + bot Python que rastreia variações de preço e identifica oportunidades de ajuste competitivo.</p>
+          <div class="project-links">
+            <a href="https://github.com/" class="project-link">Ver no GitHub →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-bg">
+  <div class="container">
+    <p class="section-label">Ferramentas</p>
+    <h2>Skills técnicas</h2>
+    <p class="section-desc">Domínio prático nas ferramentas mais usadas por times de dados e e-commerce.</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Análise de dados</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Excel avançado</span>
+          <span class="skill-tag">Google Sheets</span>
+          <span class="skill-tag">Tabelas Dinâmicas</span>
+          <span class="skill-tag">Power Query</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Programação</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">VBA</span>
+          <span class="skill-tag">GitHub Actions</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Precificação</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Margem de contribuição</span>
+          <span class="skill-tag">Análise competitiva</span>
+          <span class="skill-tag">Curva ABC</span>
+          <span class="skill-tag">Buy Box</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>E-commerce</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Mercado Livre</span>
+          <span class="skill-tag">APIs REST</span>
+          <span class="skill-tag">Automação de preços</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-text">
+        <div class="about-avatar">G</div>
+        <p class="section-label">Sobre mim</p>
+        <h2>Analista que entende de negócio, não só de números.</h2>
+        <p>Sou vendedor ativo no Mercado Livre e trabalho com análise de dados na prática — não só teoria. Já automatizei monitoramento de preços, construí dashboards de margem e entendo como decisões de precificação afetam resultado real.</p>
+        <p>Agora ofereço esses serviços para outros empreendedores e empresas que precisam de clareza nos dados para crescer.</p>
+        <ul class="about-highlights">
+          <li>Projetos com dados reais de e-commerce</li>
+          <li>Entrega documentada e replicável</li>
+          <li>Comunicação clara, sem jargão técnico</li>
+          <li>Disponível para ajustes pós-entrega</li>
+        </ul>
+      </div>
+      <div>
+        <div style="background: var(--teal-light); border-radius: 16px; padding: 2rem;">
+          <p style="font-size: 13px; font-weight: 600; color: var(--teal-dark); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1.25rem;">Como funciona</p>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; gap: 14px; align-items: flex-start;">
+              <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--teal); color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0;">1</div>
+              <div><strong style="font-size: 14px;">Me conta o problema</strong><p style="font-size: 13px; color: var(--ink-soft); margin-top: 2px;">Via WhatsApp ou LinkedIn — 15 min de conversa já basta.</p></div>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: flex-start;">
+              <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--teal); color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0;">2</div>
+              <div><strong style="font-size: 14px;">Envio proposta e prazo</strong><p style="font-size: 13px; color: var(--ink-soft); margin-top: 2px;">Escopo claro, preço fixo e data de entrega.</p></div>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: flex-start;">
+              <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--teal); color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0;">3</div>
+              <div><strong style="font-size: 14px;">Entrego com documentação</strong><p style="font-size: 13px; color: var(--ink-soft); margin-top: 2px;">Arquivos + explicação de como usar tudo.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="contact-bg">
+  <div class="container">
+    <p class="section-label">Vamos trabalhar juntos</p>
+    <h2>Entre em contato</h2>
+    <p class="section-desc">Respondo em até 24h. Orçamento sem compromisso.</p>
+    <div class="contact-inner">
+      <div class="contact-channels">
+        <a href="https://linkedin.com/in/gusmao" class="contact-channel" target="_blank">
+          <span class="channel-icon">💼</span>
+          <div>
+            <div class="channel-label">LinkedIn</div>
+            <div class="channel-val">linkedin.com/in/gusmao</div>
+          </div>
+        </a>
+        <a href="https://github.com/gusmao" class="contact-channel" target="_blank">
+          <span class="channel-icon">💻</span>
+          <div>
+            <div class="channel-label">GitHub — Portfólio completo</div>
+            <div class="channel-val">github.com/gusmao</div>
+          </div>
+        </a>
+        <a href="mailto:contato@gusmao.dev" class="contact-channel">
+          <span class="channel-icon">✉️</span>
+          <div>
+            <div class="channel-label">E-mail</div>
+            <div class="channel-val">contato@gusmao.dev</div>
+          </div>
+        </a>
+      </div>
+      <div>
+        <p class="contact-form-note">Prefere uma conversa rápida? Me chama direto no WhatsApp com uma breve descrição do que você precisa.</p>
+        <a href="https://wa.me/5500000000000?text=Oi%20Gusmão!%20Vi%20seu%20portfólio%20e%20tenho%20um%20projeto%20de%20análise%20de%20dados." class="contact-whatsapp" target="_blank">
+          💬 Chamar no WhatsApp
+        </a>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 1.5rem;">Aceito projetos via Workana, Upwork e contato direto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-copy">© 2026 Gusmão Data — Taubaté, SP</span>
+  <span class="footer-logo">Gusmão.</span>
+</footer>
+
+</body>
+</html>
